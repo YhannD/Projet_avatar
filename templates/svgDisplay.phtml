@@ -1,0 +1,10 @@
+<svg id="svgImage" xmlns="http://www.w3.org/2000/svg" width = "200" height = "200" viewBox="0 0 <?=$table?> <?=$table?>">
+
+    <?php foreach ($superAvatar->getMatrix() as $shape) :?>
+
+        <rect x="<?=$shape->getX()?>" y="<?=$shape->getY()?>" width="<?=$shape->getSize()?>" height="<?=$shape->getSize()?>" fill="<?=$shape->getColor()?>" />
+
+    <?php endforeach; ?>
+
+</svg>
+
