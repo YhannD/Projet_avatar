@@ -2,7 +2,7 @@
 
 $fileName = 'MyAvatar.svg';
 $avatar = $_POST['avatar'];
-file_put_contents("../public/assets/temp/$fileName", $avatar);
+//file_put_contents("../public/assets/temp/$fileName", $avatar);
 //header('location:../public/index.php');
 //
 //if(!empty($_GET['file']))
@@ -14,11 +14,12 @@ file_put_contents("../public/assets/temp/$fileName", $avatar);
 //Define Headers
         header("Cache-Control: public");
         header("Content-Description: File Transfer");
-        header("Content-Type: application/octetstream");
+        header("Content-Type: image/svg+xml");
 //        header("Content-Transfer-Encoding: Binary");
         header('Content-Disposition: attachment; filename="MyAvatar.svg"');
 
-echo  readfile($fileName);
+        echo $avatar;
+//echo  file_get_contents("../public/assets/temp/$fileName");
         exit;
 //
 //    }
