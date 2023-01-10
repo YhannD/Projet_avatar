@@ -5,40 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/assets/css/style.css">
-    <script type="module" src="../public/assets/js/scripts.js"></script>
-    <title>Document</title>
+    <script src="../public/assets/js/scripts.js" defer></script>
+    <title>Mon avatar 3 par James Cameron</title>
 </head>
 <body>
 <h1>Générateur de Formes géométrique</h1>
-<section>
-    <?php include 'svgDisplay.phtml';?>
+<section id="svg">
+    <svg id="svgImage" xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+         viewBox="0 0 <?= $table ?> <?= $table ?>">
+
+        <?php foreach ($superAvatar->getMatrix() as $shape) : ?>
+
+            <rect x="<?= $shape->getX() ?>" y="<?= $shape->getY() ?>" width="<?= $shape->getSize() ?>"
+                  height="<?= $shape->getSize() ?>" fill="<?= $shape->getColor() ?>"/>
+
+        <?php endforeach; ?>
+
+    </svg>
 </section>
 <form method="POST" action="../public/index.php" id="submit-form">
     <div>
-<label for="size">Taille
-    <input id="size" name="size" type="range" min="2" max="40" value="5" oninput="amountSize.value= this.value">
-    <output id="amountSize" name="amountSize" for="size">5</output>
-</label>
+        <label for="size">Taille
+            <input id="size" name="size" type="range" min="2" max="40" value="5" oninput="amountSize.value= this.value">
+            <output id="amountSize" name="amountSize" for="size">5</output>
+        </label>
     </div>
     <div>
-<label for="colors">Couleurs
-    <input id="colors" name="colors" type="range" min="2" max="20" value="3" oninput="amountColors.value= this.value">
-    <output id="amountColors" name="amountColors" for="size">3</output>
-</label>
+        <label for="colors">Couleurs
+            <input id="colors" name="colors" type="range" min="2" max="20" value="3"
+                   oninput="amountColors.value= this.value">
+            <output id="amountColors" name="amountColors" for="size">3</output>
+        </label>
     </div>
     <input id="submit-button" class="submit" type="submit" value="Générer">
 </form>
 
-<form method="POST" action="../libs/save.php" id="downloadAvatar">
-    <input id="avatarSave" type="hidden" value='<?php include 'svgDisplay.phtml';?>' name="avatar">
+<form method="POST" id="downloadAvatar">
+    <input id="avatarSave" type="hidden" name="avatar">
     <input type="submit" id="Save" value="Sauvegarder">
 </form>
-<form method="POST" action="../libs/download.php?file=MyAvatar.svg" id="registerAvatar">
-    <input id="avatar" type="hidden" value='<?php include 'svgDisplay.phtml'; ?>' name="avatar">
+<form method="POST" id="registerAvatar">
+    <input id="avatar" type="hidden" name="avatar">
     <input type="submit" id="Download" value="Télécharger">
-    <a href="../libs/download.php">Télécharger</a>
 </form>
-<h2>Télécharger ici</h2>
-<a href="../public/assets/temp/MyAvatar.svg">clic ici</a>
+
 </body>
+
 </html>
